@@ -7,6 +7,7 @@
 ## Features
 - Manual entry or file upload
 - Supports comma-separated or line-separated epitopes
+- Removes duplicates
 - Dark mode support
 - Clean, modern interface
 - No installation required
