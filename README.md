@@ -30,7 +30,7 @@
 ACDEFGHIK, LMNPQRST, VWXYZZZ
 
 
-**Line-separated:**
+**Line-separated (tab +enter):**
 ACDEFGHIK
 LMNPQRST
 VWXYZZZ
