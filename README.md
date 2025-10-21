@@ -1,6 +1,6 @@
 # FtihoEpitizer
 
-![FtihoEpitizer Logo](FtihoEpitizerlogo.jpg)
+![FtihoEpitizer Logo](FtihoEpitizerlogo.png)
 
 **Epitope to FASTA Converter** - A simple desktop application to convert epitope sequences to FASTA format.
 
