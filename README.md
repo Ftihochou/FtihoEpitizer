@@ -13,7 +13,7 @@
 
 ## Download
 
-**Windows**: [Download FtihoEpitizer.exe](https://github.com/YourUsername/FtihoEpitizer/releases/latest)
+**Windows**: [Download FtihoEpitizer.exe](https://github.com/Ftihochou/FtihoEpitizer/releases/latest)
 
 ## How to Use
 
