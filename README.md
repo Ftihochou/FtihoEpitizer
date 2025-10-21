@@ -28,14 +28,12 @@
 **Comma-separated:**
 ACDEFGHIK, LMNPQRST, VWXYZZZ
 
-text
 
 **Line-separated:**
 ACDEFGHIK
 LMNPQRST
 VWXYZZZ
 
-text
 
 ## Requirements
 - Windows 10 or later
