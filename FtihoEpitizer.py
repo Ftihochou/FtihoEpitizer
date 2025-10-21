@@ -13,6 +13,9 @@ class EpitopeToFastaGUI:
         self.root.minsize(750, 650)
         self.root.resizable(True, True)
         
+        # Set window icon
+        self.set_window_icon()
+        
         # Dark mode state
         self.dark_mode = False
         
@@ -40,6 +43,38 @@ class EpitopeToFastaGUI:
         
         self.load_logo()
         self.create_ui()
+    
+    def set_window_icon(self):
+        """Set the window icon"""
+        icon_file = "FtihoEpitizer.ico"
+        
+        # Check if running as executable or script
+        if getattr(sys, 'frozen', False):
+            # Running as executable
+            base_path = sys._MEIPASS
+        else:
+            # Running as script
+            base_path = os.path.dirname(os.path.abspath(__file__))
+        
+        icon_path = os.path.join(base_path, icon_file)
+        
+        try:
+            # For Windows - use iconbitmap
+            if os.path.exists(icon_path):
+                self.root.iconbitmap(icon_path)
+            else:
+                print(f"Icon file not found at: {icon_path}")
+        except Exception as e:
+            # Fallback for Linux/Mac - use iconphoto
+            try:
+                # Try to use PNG as fallback
+                png_icon = "FtihoEpitizer.png"
+                png_path = os.path.join(base_path, png_icon)
+                if os.path.exists(png_path):
+                    icon = tk.PhotoImage(file=png_path)
+                    self.root.iconphoto(True, icon)
+            except Exception as e2:
+                print(f"Could not set icon: {e}, {e2}")
         
     def create_ui(self):
         """Create the user interface"""
@@ -79,22 +114,6 @@ class EpitopeToFastaGUI:
         # Main centered container inside scrollable frame
         main_container = tk.Frame(scrollable_frame, bg=colors['bg'])
         main_container.pack(padx=60, pady=30, fill=tk.BOTH, expand=True)
-        
-        # Dark mode toggle button at top right
-        toggle_frame = tk.Frame(main_container, bg=colors['bg'])
-        toggle_frame.pack(fill=tk.X, pady=(0, 10))
-        
-        dark_mode_btn = tk.Button(toggle_frame,
-                                 text="🌙 Dark" if not self.dark_mode else "☀️ Light",
-                                 command=self.toggle_dark_mode,
-                                 font=("Arial", 9),
-                                 bg=colors['content_bg'],
-                                 fg=colors['text'],
-                                 relief=tk.FLAT,
-                                 padx=15,
-                                 pady=5,
-                                 cursor='hand2')
-        dark_mode_btn.pack(side=tk.RIGHT)
         
         # Logo at the top
         if hasattr(self, 'logo_photo'):
@@ -270,16 +289,32 @@ class EpitopeToFastaGUI:
                                fg=colors['accent1'])
         status_label.pack(pady=(5, 0))
         
-        # Credits footer - centered at bottom
-        credits_frame = tk.Frame(main_container, bg=colors['bg'])
-        credits_frame.pack(side=tk.BOTTOM, fill=tk.X, pady=(15, 10))
+        # Footer frame with credits and dark mode toggle
+        footer_frame = tk.Frame(main_container, bg=colors['bg'])
+        footer_frame.pack(side=tk.BOTTOM, fill=tk.X, pady=(15, 10))
         
-        credits_label = tk.Label(credits_frame,
+        # Credits on the left
+        credits_label = tk.Label(footer_frame,
                                 text="© ftihochou 2025",
                                 font=("Arial", 9, "italic"),
                                 bg=colors['bg'],
                                 fg=colors['text_light'])
-        credits_label.pack(anchor=tk.CENTER)
+        credits_label.pack(side=tk.LEFT)
+        
+        # Dark mode toggle button on the right
+        dark_mode_btn = tk.Button(footer_frame,
+                                 text="🌙 Dark Mode" if not self.dark_mode else "☀️ Light Mode",
+                                 command=self.toggle_dark_mode,
+                                 font=("Arial", 9),
+                                 bg=colors['content_bg'],
+                                 fg=colors['text'],
+                                 activebackground=colors['accent1'],
+                                 activeforeground='white',
+                                 relief=tk.FLAT,
+                                 padx=15,
+                                 pady=5,
+                                 cursor='hand2')
+        dark_mode_btn.pack(side=tk.RIGHT)
         
         # Update canvas width on window resize
         def on_canvas_configure(event):
@@ -399,3 +434,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+###Ftihochou all rights reserved
