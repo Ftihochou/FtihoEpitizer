@@ -1,4 +1,4 @@
-# FtihoEpitizer
+# FtihoEpitizer v2.0
 
 ![FtihoEpitizer Logo](FtihoEpitizerlogo.png)
 
